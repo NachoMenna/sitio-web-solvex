@@ -1,0 +1,1754 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SOLVEX — Herramientas de corte</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <a href="https://lordicon.com/">Icons by Lordicon.com</a>
+
+    <style>
+      :root {
+        --ink: #0b1020; /* negro azulado */
+        --ink2: #060912; /* más oscuro */
+        --blue: #1638f4; /* azul eléctrico del hero */
+        --blue2: #00a3ff;
+        --line: #1a2a4a;
+        --text: #eaf2ff;
+        --muted: #9fb0c6;
+
+        --paper: #f2f6ff; /* fondo claro azulado */
+        --paper2: #ffffff;
+        --paperLine: #d7e2ff;
+
+        --radius: 18px;
+        --shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
+        --max: 1120px;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("./fonts/inter/Inter-Thin.ttf") format("truetype");
+        font-weight: 100;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("./fonts/inter/Inter-ExtraLight.ttf") format("truetype");
+        font-weight: 200;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("./fonts/inter/Inter-Light.ttf") format("truetype");
+        font-weight: 300;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("./fonts/inter/Inter-Regular.ttf") format("truetype");
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("./fonts/inter/Inter-Medium.ttf") format("truetype");
+        font-weight: 500;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("./fonts/inter/Inter-SemiBold.ttf") format("truetype");
+        font-weight: 600;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("./fonts/inter/Inter-Bold.ttf") format("truetype");
+        font-weight: 700;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("./fonts/inter/Inter-ExtraBold.ttf") format("truetype");
+        font-weight: 800;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("./fonts/inter/Inter-Black.ttf") format("truetype");
+        font-weight: 900;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "VLNL Breakz";
+        src: url("./fonts/VLNL/VLNL-Breakz-W00-Condensed-Light.ttf")
+          format("truetype");
+        font-weight: 300;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "VLNL Breakz";
+        src: url("./fonts/VLNL/VLNL-Breakz-W00-Condensed-Bold.ttf")
+          format("truetype");
+        font-weight: 700;
+        font-display: swap;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
+        color: var(--text);
+        background: var(--ink2);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      .container {
+        width: min(var(--max), calc(100% - 40px));
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ===== NAV ===== */
+      .nav {
+        position: absolute;
+        inset: 0 0 auto 0;
+        z-index: 20;
+        padding: 18px 0;
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 900;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        background-image: url("./primera parte/logo-encabezado1.png");
+      }
+      .brand-logo {
+        height: 42px; /* ajustá según tamaño deseado */
+        width: auto;
+        display: block;
+      }
+      .brand-mark {
+        width: 26px;
+        height: 26px;
+        border-radius: 7px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        font-size: 13px;
+        font-weight: 600;
+        color: rgba(234, 242, 255, 0.82);
+      }
+      .nav-links a {
+        opacity: 0.9;
+      }
+      .nav-links a:hover {
+        opacity: 1;
+      }
+      .btn {
+        height: 40px;
+        padding: 0 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(10, 14, 26, 0.55);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        font-weight: 700;
+        font-size: 13px;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        transition:
+          transform 0.14s ease,
+          border-color 0.14s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.24);
+      }
+      .btn.primary {
+        border-color: rgba(22, 56, 244, 0.5);
+        background: linear-gradient(
+          135deg,
+          rgba(22, 56, 244, 0.95),
+          rgba(0, 163, 255, 0.78)
+        );
+        box-shadow: 0 18px 60px rgba(22, 56, 244, 0.26);
+      }
+      .hamburger {
+        display: none;
+      }
+
+      /* ===== HERO ===== */
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background: url("./primera parte/fondo solvex.webp") center / cover
+          no-repeat;
+        z-index: 1;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 1600px;
+        margin: 0 auto;
+        margin-top: 3%;
+        padding: 80px 5%;
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      /* ===== TEXTO ===== */
+
+      .h-title {
+        font-size: clamp(48px, 6vw, 110px);
+        font-family: "VLNL Breakz", sans-serif;
+        margin: 0;
+        color: #ffffff;
+      }
+
+      .h-sub {
+        font-size: clamp(20px, 2vw, 32px);
+        color: var(--blue);
+        margin: 20px 0;
+        max-width: 28ch;
+      }
+
+      .h-desc {
+        font-size: 15px;
+        line-height: 1.6;
+        color: rgba(159, 176, 198, 0.92);
+        max-width: 52ch;
+        margin-bottom: 28px;
+      }
+
+      .hero-ctas {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      /* ===== SLIDER ===== */
+
+      .hero-slider {
+        width: 100%;
+      }
+
+      .slider-frame {
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.14);
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        box-shadow: var(--shadow);
+        position: relative;
+      }
+      .slider-card {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/10;
+        border-radius: 16px;
+        background: #cfd6e5;
+      }
+
+      /* Slides */
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .slide.active {
+        opacity: 1;
+      }
+
+      .slide.s1 {
+        background-image: url("/primera parte/webp carrusel imagenes/nacho-y-robert.webp");
+      }
+      .slide.s2 {
+        background-image: url("/primera parte/webp carrusel imagenes/oke-htas.webp");
+      }
+      .slide.s3 {
+        background-image: url("/primera parte/webp carrusel imagenes/Robert y Nacho 2.webp");
+      }
+
+      /* ===== FLECHAS PERFECTAMENTE POSICIONADAS ===== */
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 46px;
+        height: 46px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: rgba(10, 16, 32, 0.55);
+        backdrop-filter: blur(10px);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        transition: 0.2s ease;
+        z-index: 5;
+      }
+
+      .arrow:hover {
+        transform: translateY(-50%) scale(1.05);
+      }
+
+      /* Medio afuera / medio adentro */
+
+      .arrow-left {
+        left: -23px;
+      }
+
+      .arrow-right {
+        right: -23px;
+      }
+
+      /* ===== DOTS ===== */
+
+      .slider-dots {
+        position: absolute;
+        bottom: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+      }
+
+      .dot.active {
+        background: linear-gradient(135deg, var(--blue), var(--blue2));
+        border: none;
+      }
+
+      /* ===== RESPONSIVE ===== */
+
+      @media (max-width: 1100px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 50px;
+          text-align: center;
+        }
+
+        .h-sub,
+        .h-desc {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .hero-ctas {
+          justify-content: center;
+        }
+
+        .arrow-left {
+          left: -18px;
+        }
+
+        .arrow-right {
+          right: -18px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero-inner {
+          padding: 60px 6%;
+        }
+
+        .slider-card {
+          aspect-ratio: 4/3;
+        }
+
+        .arrow {
+          width: 40px;
+          height: 40px;
+        }
+
+        .arrow-left {
+          left: -16px;
+        }
+
+        .arrow-right {
+          right: -16px;
+        }
+      }
+      /* ============================= */
+      /*         SEGUNDA PARTE        */
+      /* ============================= */
+
+      .qh-section {
+        width: 100%;
+        height: 100%;
+        background: url("./segunda parte/fondo web.webp") center / cover
+          no-repeat;
+        padding: 120px 0 200px;
+      }
+
+      /* Contenedor */
+      .qh-container {
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 0;
+      }
+
+      /* Título */
+      .qh-title {
+        text-align: center;
+        font-size: clamp(36px, 4vw, 60px);
+        font-weight: 800;
+        margin-bottom: 120px;
+        color: #000;
+      }
+
+      /* ============================= */
+      /*           TIMELINE           */
+      /* ============================= */
+
+      .qh-timeline {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 200px;
+      }
+
+      /* Línea central */
+      .qh-timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 3px;
+        background: #1e5ac8;
+      }
+
+      /* ============================= */
+      /*            FILAS             */
+      /* ============================= */
+
+      .qh-row {
+        position: relative; /* 🔥 necesario para el dot */
+        display: flex;
+        width: 100%;
+      }
+
+      .qh-row.left {
+        justify-content: flex-start;
+      }
+
+      .qh-row.right {
+        justify-content: flex-end;
+      }
+
+      /* Punto */
+      .qh-dot {
+        position: absolute;
+        top: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 18px;
+        height: 18px;
+        background: #1e5ac8;
+        border-radius: 50%;
+        z-index: 3;
+        box-shadow: 0 0 0 8px rgba(30, 90, 200, 0.15);
+      }
+
+      /* ============================= */
+      /*            CARDS             */
+      /* ============================= */
+
+      .qh-card {
+        width: 460px;
+        max-width: 90%;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(14px);
+        border-radius: 18px;
+        padding: 28px 30px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+      }
+
+      .qh-card:hover {
+        transform: translateY(-6px);
+      }
+
+      .qh-card-header {
+        width: 100%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-weight: 700;
+        font-size: 18px;
+        color: #1e5ac8;
+        text-align: left;
+        padding: 0;
+      }
+      .qh-card-header span {
+        flex: 1;
+      }
+      .qh-arrow {
+        width: 22px;
+        height: 22px;
+        transition: transform 0.3s ease;
+      }
+
+      .qh-icon {
+        width: 78px;
+        height: 78px;
+      }
+
+      .qh-card-body {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s ease,
+          margin-top 0.3s ease;
+        margin-top: 0;
+        font-size: 15px;
+        line-height: 1.6;
+        color: #111;
+      }
+
+      .qh-card.active .qh-card-body {
+        max-height: 300px;
+        margin-top: 18px;
+      }
+      .qh-card.active .qh-arrow {
+        transform: rotate(180deg);
+      }
+
+      /* ============================= */
+      /*          RESPONSIVE          */
+      /* ============================= */
+
+      @media (max-width: 900px) {
+        .qh-timeline {
+          gap: 80px;
+        }
+
+        .qh-timeline::before {
+          left: 24px;
+          transform: none;
+        }
+
+        .qh-row {
+          justify-content: flex-start !important;
+          padding-left: 70px;
+        }
+
+        .qh-dot {
+          left: 24px;
+          transform: none;
+        }
+
+        .qh-card {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .qh-section {
+          padding: 100px 0;
+        }
+
+        .qh-title {
+          font-size: 32px;
+          margin-bottom: 60px;
+        }
+
+        .qh-row {
+          padding-left: 55px;
+        }
+
+        .qh-card {
+          padding: 22px;
+        }
+
+        .qh-card-header {
+          font-size: 16px;
+        }
+
+        .qh-card-body {
+          font-size: 14px;
+        }
+      }
+
+      /* ============================= */
+      /*           PARTE 3              */
+      /* ============================= */
+
+      /* Banda de logos (más “plana” como en tu web) */
+      .brands {
+        position: relative;
+        width: 100%;
+        padding: 90px 0;
+        background: url("/3 parte/fondo nacho.png") center / cover no-repeat;
+        overflow: hidden;
+      }
+
+      .brands-inner {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .brands-left {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .btn-outline {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 1px solid #1e5ac8;
+        color: #1e5ac8;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .btn-solid {
+        display: inline-block;
+        border-radius: 22px;
+        background: #1e5ac8;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 10px;
+
+        transition: background 0.3s ease;
+      }
+
+      .btn-solid:hover {
+        background: #1747a2;
+      }
+      .logoBox {
+        width: 132px;
+        height: 56px;
+        border-radius: 12px;
+        border: 1px solid rgba(10, 15, 21, 0.1);
+        background: #f6f8ff;
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+        letter-spacing: 0.4px;
+        color: rgba(10, 15, 21, 0.7);
+      }
+      .brands-right h3 {
+        margin: 0 0 6px 0;
+        color: var(--blue);
+        font-weight: 900;
+        font-size: clamp(22px, 2.2vw, 34px);
+        line-height: 1.05;
+      }
+      .brands-right p {
+        margin: 0;
+        color: rgba(10, 15, 21, 0.7);
+        font-size: 13px;
+        line-height: 1.6;
+        max-width: 60ch;
+      }
+      .btn-outline {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 1px solid #1e5ac8;
+        color: #1e5ac8;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        margin-bottom: 10px;
+      }
+
+      .btn-solid {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 22px;
+        background: #1e5ac8;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.3s ease;
+      }
+
+      .btn-solid:hover {
+        background: #1747a2;
+      }
+      /* Dark blocks: “Quiénes somos”, “Entrega”, “Cómo comprar” */
+      .dark {
+        position: relative;
+        background: url("/4 parte/fondo 4.webp") center / cover no-repeat;
+        padding: 120px 0;
+      }
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        align-items: center;
+      }
+      .split h2 {
+        font-family: "Inter", medium;
+        font-size: clamp(38px, 4vw, 56px);
+        font-weight: 900;
+        color: #ffffff;
+        line-height: 1.05;
+        margin-bottom: 16px;
+      }
+      .split p {
+        color: #3b82f6;
+        font-size: 18px;
+        line-height: 1.8;
+        max-width: 50ch;
+      }
+
+      .photo {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: var(--shadow);
+        height: 320px;
+        background: url("/4 parte/fabrica.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .btn-gradient {
+        display: inline-block;
+        padding: 10px 22px;
+        border-radius: 22px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #fff;
+        text-decoration: none;
+        background: linear-gradient(135deg, #2563eb, #1e3a8a);
+        box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+        transition: all 0.3s ease;
+      }
+
+      .btn-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+      }
+
+      /* “Otras marcas” con grilla a la derecha */
+      .other {
+        position: relative;
+        padding: 120px 0;
+        background: url("/parte 5/Fondo blanco.webp");
+        color: #0a0f15;
+      }
+      .other-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 22px;
+        align-items: start;
+      }
+      .other h2 {
+        font-family: "Inter" (medium);
+        margin: 0 0 10px 0;
+        font-weight: 900;
+        color: var(--blue);
+        font-size: clamp(26px, 2.6vw, 40px);
+        line-height: 1.05;
+      }
+      .other p {
+        font-family: "Inter";
+        margin: 0;
+        color: rgba(10, 15, 21, 0.72);
+        font-size: 18px;
+        line-height: 1.7;
+      }
+      .logo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .tile1 {
+        border-radius: 14px;
+        border: 1px solid rgba(10, 15, 21, 0.1);
+        background: url("/parte 5/POWERLINE.jpeg");
+        background-color: white;
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 78px;
+        color: rgba(10, 15, 21, 0.72);
+      }
+
+      .tile2 {
+        border-radius: 14px;
+        border: 1px solid rgba(10, 15, 21, 0.1);
+        background: url("/parte 5/YG1.png");
+        background-color: white;
+        background-size: 40%;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 78px;
+        color: rgba(10, 15, 21, 0.72);
+      }
+      .tile3 {
+        border-radius: 14px;
+        border: 1px solid rgba(10, 15, 21, 0.1);
+        background: url("/parte 5/LENOX.png");
+        background-color: white;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 78px;
+        color: rgba(10, 15, 21, 0.72);
+      }
+      .tile4 {
+        border-radius: 14px;
+        border: 1px solid rgba(10, 15, 21, 0.1);
+        background: url("/parte 5/KORLOY.jpeg");
+        background-color: white;
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 78px;
+        color: rgba(10, 15, 21, 0.72);
+      }
+      .tile5 {
+        border-radius: 14px;
+        border: 1px solid rgba(10, 15, 21, 0.1);
+        background: url("/parte 5/VERTEX.jpeg");
+        background-color: white;
+        background-size: 80%;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 78px;
+        color: rgba(10, 15, 21, 0.72);
+      }
+      .tile6 {
+        border-radius: 14px;
+        border: 1px solid rgba(10, 15, 21, 0.1);
+        background: url("/parte 5/SGS.png");
+        background-color: white;
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 78px;
+        color: rgba(10, 15, 21, 0.72);
+      }
+
+      .dark1 {
+        position: relative;
+        width: 100%;
+        padding: 190px 0;
+        overflow: hidden;
+        background: url("6 parte/web.webp") center / cover no-repeat;
+      }
+      .entrega {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        align-items: center;
+      }
+      .entrega h2 {
+        font-family: "Inter", medium;
+        font-size: clamp(38px, 4vw, 56px);
+        font-weight: 900;
+        color: #ffffff;
+        line-height: 1.05;
+        margin-bottom: 16px;
+      }
+      .entrega p {
+        color: #3b82f6;
+        font-size: 18px;
+        line-height: 1.8;
+        max-width: 50ch;
+      }
+
+      .photo1 {
+        border-radius: 32px;
+        border: 4px solid white;
+        box-shadow: var(--shadow);
+        height: 320px;
+        background: url("/6 parte/box.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Sectores (claro + imagen derecha) */
+
+      .sectors {
+        width: 100%;
+        position: relative;
+        padding: 120px 0;
+        background: url("/7 parte/fondo.webp");
+      }
+      .sectors-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        /* gap: 60px; */
+        align-items: center;
+      }
+
+      .sectors-content h2 {
+        font-family: "VLNL Breakz", sans-serif;
+        margin: 0;
+        font-weight: 900;
+        color: var(--blue);
+        font-size: clamp(26px, 2.6vw, 40px);
+      }
+
+      .subtitle {
+        font-family: "inter", medium;
+        margin: 10px 0 18px 0;
+        color: rgba(10, 15, 21, 0.72);
+        font-size: clamp(26px, 2.6vw, 40px);
+      }
+
+      /* Título dinámico */
+      #sectorTitle {
+        color: var(--blue);
+        font-size: 34px;
+        margin: 0 0 12px 0;
+        font-weight: 800;
+      }
+
+      #sectorDesc {
+        font-size: 15px;
+        line-height: 1.7;
+        color: rgba(10, 15, 21, 0.75);
+      }
+
+      .sectors h2 {
+        font-family: "VLNL Breakz", sans-serif;
+        margin: 0 0 10px 0;
+        font-weight: 900;
+        color: var(--blue);
+        font-size: 36px;
+      }
+
+      .sectors p {
+        margin: 0;
+        color: rgba(10, 15, 21, 0.72);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .carousel {
+        border-radius: 50px; /* más elegante */
+        border: 1px solid rgba(10, 15, 21, 0.1);
+        min-height: 350px;
+        position: relative;
+        box-shadow: 0 18px 45px rgba(10, 15, 21, 0.12);
+        background: #dfe8ff;
+        padding: 8px;
+      }
+      .carousel-inner {
+        border-radius: 28px;
+        overflow: hidden;
+      }
+
+      .blue-line {
+        width: 220px;
+        height: 3px;
+        background: var(--blue);
+        margin-bottom: 40px;
+      }
+      .frame {
+        border-radius: 50px; /* más elegante */
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .frame.active {
+        opacity: 1;
+      }
+
+      .frame.f1 {
+        background-image: url("./7 parte/webp/agroindustria.webp");
+      }
+
+      .frame.f2 {
+        background-image: url("./7 parte/webp/energia.webp");
+      }
+
+      .frame.f3 {
+        background-image: url("./7 parte/automotriz.jpg");
+      }
+
+      .frame.f4 {
+        background-image: url("./7 parte/webp/hidraulico.webp");
+      }
+
+      .frame.f5 {
+        background-image: url("./7 parte/webp/medicina.webp");
+      }
+
+      .frame.f6 {
+        background-image: url("./7 parte/webp/moldes\ y\ matrices.webp");
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        background: rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .arrow.prev {
+        left: -22px;
+      }
+
+      .arrow.next {
+        right: -22px;
+      }
+
+      .arrow:hover {
+        background: rgba(0, 0, 0, 0.55);
+      }
+
+      /* footer */
+      footer {
+        padding: 28px 0;
+        background: #05070d;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(159, 176, 198, 0.92);
+        font-size: 13px;
+      }
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        height: 34px;
+        padding: 0 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(10, 14, 26, 0.45);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* chat bubble bottom-right (como tu captura) */
+      .chat {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        z-index: 50;
+      }
+      .chat svg {
+        opacity: 0.9;
+      }
+
+      /* responsive */
+      @media (max-width: 920px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+          padding-top: 95px;
+        }
+        .what-grid {
+          grid-template-columns: 1fr;
+        }
+        .brands {
+          background-position: left center;
+        }
+
+        .brands-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .brands-right {
+          text-align: center;
+        }
+        .brands-right p {
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .split {
+          grid-template-columns: 1fr;
+        }
+        .other-grid {
+          grid-template-columns: 1fr;
+        }
+        .sectors-grid {
+          grid-template-columns: 1fr;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: inline-flex;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="hero" id="top">
+      <div class="hero-waves" aria-hidden="true"></div>
+      <!-- NAV -->
+      <nav class="nav">
+        <div class="container nav-inner">
+          <a class="brand" href="#top">
+            <img
+              src="./primera parte/logo-encabezado1.png"
+              class="brand-logo"
+            />
+          </a>
+
+          <div class="nav-links">
+            <a href="#que-hacemos">¿Qué hacemos?</a>
+            <a href="#productos">Productos</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#sectores">Sectores</a>
+          </div>
+
+          <div style="display: flex; gap: 10px; align-items: center">
+            <button
+              class="btn hamburger"
+              type="button"
+              onclick="toggleMobileMenu()"
+            >
+              ☰
+            </button>
+            <a class="btn primary" href="#contacto">Contacto</a>
+          </div>
+        </div>
+
+        <div id="mobileMenu" style="display: none">
+          <div class="container" style="padding: 10px 0 0 0">
+            <div style="display: flex; gap: 10px; flex-wrap: wrap">
+              <a
+                class="btn"
+                style="height: 36px"
+                href="#que-hacemos"
+                onclick="toggleMobileMenu()"
+                >¿Qué hacemos?</a
+              >
+              <a
+                class="btn"
+                style="height: 36px"
+                href="#productos"
+                onclick="toggleMobileMenu()"
+                >Productos</a
+              >
+              <a
+                class="btn"
+                style="height: 36px"
+                href="#servicios"
+                onclick="toggleMobileMenu()"
+                >Servicios</a
+              >
+              <a
+                class="btn"
+                style="height: 36px"
+                href="#sectores"
+                onclick="toggleMobileMenu()"
+                >Sectores</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- PRIMERA PARTE -->
+      <div class="hero-bg"></div>
+      <div class="hero-inner">
+        <!-- COLUMNA TEXTO -->
+        <div class="hero-content">
+          <h1 class="h-title">SOLVEX</h1>
+
+          <p class="h-sub">
+            Herramientas de corte y accesorios para el mecanizado
+          </p>
+
+          <p class="h-desc">
+            Te ayudamos a elegir la mejor opción para tu aplicación con soporte
+            técnico y coordinación de entrega.
+          </p>
+
+          <div class="hero-ctas">
+            <a class="btn primary" href="#contacto">Coordinar</a>
+            <a class="btn" href="#que-hacemos">Conocé más</a>
+          </div>
+        </div>
+
+        <!-- COLUMNA SLIDER -->
+        <div class="hero-slider">
+          <div class="slider-frame">
+            <div class="slider-card" id="heroSlider">
+              <div class="slide s1 active"></div>
+              <div class="slide s2"></div>
+              <div class="slide s3"></div>
+
+              <!-- Flechas -->
+              <button
+                class="arrow arrow-left"
+                onclick="sliderPrev()"
+                aria-label="Anterior"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M14.5 5L7.5 12L14.5 19"
+                    stroke="white"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <button
+                class="arrow arrow-right"
+                onclick="sliderNext()"
+                aria-label="Siguiente"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M9.5 5L16.5 12L9.5 19"
+                    stroke="white"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <!-- Dots -->
+              <div class="slider-dots" id="heroDots">
+                <button class="dot active" onclick="sliderGo(0)"></button>
+                <button class="dot" onclick="sliderGo(1)"></button>
+                <button class="dot" onclick="sliderGo(2)"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- SEGUNDA PARTE -->
+    <section class="qh-section">
+      <div class="qh-container">
+        <h2 class="qh-title">¿Qué hacemos?</h2>
+
+        <div class="qh-timeline">
+          <div class="qh-row left">
+            <div class="qh-dot"></div>
+            <div class="qh-card">
+              <button type="button" class="qh-card-header">
+                <img src="icon/icon1.svg" class="qh-icon" alt="" />
+                <span>Asistencia técnica personalizada</span>
+
+                <svg
+                  class="qh-arrow"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="qh-card-body">
+                Brindamos soporte técnico especializado adaptado a cada cliente
+                y aplicación.
+              </div>
+            </div>
+          </div>
+
+          <div class="qh-row right">
+            <div class="qh-dot"></div>
+            <div class="qh-card">
+              <button type="button" class="qh-card-header">
+                <img src="icon/icon2.svg" class="qh-icon" alt="" />
+                <span>Especialistas en herramientas de corte</span>
+                <svg
+                  class="qh-arrow"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="qh-card-body">
+                Ayudamos a mejorar la productividad mediante herramientas de
+                mecanizado de alto rendimiento y equipos complementarios.
+              </div>
+            </div>
+          </div>
+
+          <div class="qh-row left">
+            <div class="qh-dot"></div>
+            <div class="qh-card">
+              <button type="button" class="qh-card-header">
+                <img src="icon/icon3.svg" class="qh-icon" alt="" />
+                <span>La mejor relación precio – calidad</span>
+                <svg
+                  class="qh-arrow"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="qh-card-body">
+                Ofrecemos un precio justo en cada producto, equilibrando
+                performance, durabilidad y costo operativo.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const cards = document.querySelectorAll(".qh-card");
+
+          cards.forEach((card) => {
+            const header = card.querySelector(".qh-card-header");
+
+            header.addEventListener("click", () => {
+              cards.forEach((c) => {
+                if (c !== card) c.classList.remove("active");
+              });
+
+              card.classList.toggle("active");
+            });
+          });
+        });
+      </script>
+    </section>
+
+    <!-- PARTE 3 -->
+
+    <div class="brands" id="productos">
+      <div class="container brands-inner">
+        <div class="brands-left" aria-label="Logos (placeholders)">
+          <div class="logoBox">GUHRING</div>
+          <div class="logoBox">ASIMETO</div>
+          <div class="logoBox">KYOCERA</div>
+          <div class="logoBox">UNION</div>
+        </div>
+        <div class="brands-right">
+          <a href="#" class="btn-outline">Nuestras marcas</a>
+          <h3>Todas las alternativas<br />para el mecanizado</h3>
+          <p>
+            Marcas seleccionadas para garantizar rendimiento, confiabilidad y
+            excelente relación precio–calidad.
+          </p>
+          <a href="#contacto" class="btn-solid"> Solicitar información </a>
+        </div>
+      </div>
+    </div>
+
+    <section class="dark" id="servicios">
+      <div class="container split">
+        <div>
+          <h2>¿Quiénes<br />somos?</h2>
+          <p>
+            En Solvex trabajamos para que nuestros clientes cuenten con
+            herramientas productivas, de calidad y con la asistencia técnica
+            adecuada, pagando un precio justo.
+          </p>
+          <a class="btn-gradient" href="#contacto">Contacto</a>
+        </div>
+        <div class="photo" role="img" aria-label="Industria"></div>
+      </div>
+    </section>
+
+    <section class="other">
+      <div class="container other-grid">
+        <div>
+          <h2>Otras marcas que distribuimos</h2>
+          <p>
+            Nuestra red de partners en herramientas de corte y utillaje nos
+            permite ofrecer cobertura integral, con eficiencia y precisión de
+            punta a punta.
+          </p>
+        </div>
+        <div class="logo-grid">
+          <div class="tile1"></div>
+          <div class="tile2"></div>
+          <div class="tile3"></div>
+          <div class="tile4"></div>
+          <div class="tile5"></div>
+          <div class="tile6"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark1">
+      <div class="container entrega">
+        <div>
+          <h2>Rápida entrega<br />en todo el país</h2>
+          <p>
+            Hacemos envíos coordinados según necesidad del cliente y con
+            comunicación directa.
+          </p>
+          <a class="btn primary" href="#contacto">Coordinar envío</a>
+        </div>
+        <div class="photo1"></div>
+      </div>
+    </section>
+
+    <section class="sectors">
+      <div class="container">
+        <div class="sectors-grid">
+          <!-- 🔹 COLUMNA IZQUIERDA -->
+          <div class="sectors-content">
+            <h2>Sectores</h2>
+            <p class="subtitle">
+              Soluciones de mecanizado adaptadas a cada industria.
+            </p>
+
+            <div class="blue-line"></div>
+
+            <h3 id="sectorTitle">Agroindustria</h3>
+            <p id="sectorDesc">
+              Herramientas robustas para producción continua y condiciones
+              exigentes.
+            </p>
+          </div>
+
+          <!-- 🔹 COLUMNA DERECHA -->
+          <div class="carousel">
+            <!-- Slides -->
+            <div class="carousel-inner">
+              <div class="frame f1 active"></div>
+              <div class="frame f2"></div>
+              <div class="frame f3"></div>
+              <div class="frame f4"></div>
+              <div class="frame f5"></div>
+              <div class="frame f6"></div>
+            </div>
+
+            <button
+              class="arrow prev"
+              type="button"
+              aria-label="Anterior"
+              onclick="sectorPrev()"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M14.5 5L7.5 12L14.5 19"
+                  stroke="white"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+
+            <button
+              class="arrow next"
+              type="button"
+              aria-label="Siguiente"
+              onclick="sectorNext()"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M9.5 5L16.5 12L9.5 19"
+                  stroke="white"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark" id="contacto">
+      <div class="container split">
+        <div>
+          <h2>¿Cómo comprar<br />en Solvex?</h2>
+        </div>
+        <div>
+          <ol
+            style="
+              margin: 0;
+              padding-left: 18px;
+              color: rgba(234, 242, 255, 0.88);
+              line-height: 1.95;
+              font-weight: 700;
+            "
+          >
+            <li>Escribinos por WhatsApp.</li>
+            <li>Seleccionamos la mejor opción para tu aplicación.</li>
+            <li>Coordinamos el envío a donde lo necesites.</li>
+          </ol>
+          <div
+            style="margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap"
+          >
+            <a
+              class="btn primary"
+              href="https://wa.me/5493564630525"
+              target="_blank"
+              rel="noreferrer"
+              >WhatsApp</a
+            >
+            <a class="btn" href="mailto:ignaciomenna@solvex.com.ar">Email</a>
+          </div>
+          <div
+            style="
+              margin-top: 10px;
+              color: rgba(159, 176, 198, 0.92);
+              font-size: 12.5px;
+              line-height: 1.6;
+            "
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-inner">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span style="font-weight: 900; color: rgba(234, 242, 255, 0.92)"
+            >SOLVEX</span
+          >
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap">
+          <span class="chip">📍 Córdoba, AR</span>
+          <span class="chip">📞 +54 9 3564 630525</span>
+          <span class="chip">✉️ ignaciomenna@solvex.com.ar</span>
+        </div>
+      </div>
+    </footer>
+
+    <button class="chat" type="button" aria-label="Chat">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M20 11c0 4.418-3.582 8-8 8a8.92 8.92 0 0 1-3.5-.7L4 20l1.7-4.5A8.92 8.92 0 0 1 5 11c0-4.418 3.582-8 8-8s8 3.582 8 8Z"
+          stroke="#1638f4"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8 11h8"
+          stroke="#1638f4"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M8 15h5"
+          stroke="#1638f4"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    </button>
+
+    <script>
+      // ===== Mobile menu
+      function toggleMobileMenu() {
+        const m = document.getElementById("mobileMenu");
+        m.style.display =
+          m.style.display === "none" || !m.style.display ? "block" : "none";
+      }
+
+      // ===== HERO SLIDER
+      let heroIndex = 0;
+      const heroSlides = () =>
+        Array.from(document.querySelectorAll("#heroSlider .slide"));
+      const heroDots = () =>
+        Array.from(document.querySelectorAll("#heroDots .dot"));
+
+      function sliderGo(i) {
+        const s = heroSlides(),
+          d = heroDots();
+        heroIndex = (i + s.length) % s.length;
+        s.forEach((el, idx) =>
+          el.classList.toggle("active", idx === heroIndex),
+        );
+        d.forEach((el, idx) =>
+          el.classList.toggle("active", idx === heroIndex),
+        );
+      }
+      function sliderNext() {
+        sliderGo(heroIndex + 1);
+      }
+      function sliderPrev() {
+        sliderGo(heroIndex - 1);
+      }
+
+      let heroTimer = setInterval(sliderNext, 6500);
+      const sliderEl = document.getElementById("heroSlider");
+      sliderEl.addEventListener("mouseenter", () => clearInterval(heroTimer));
+      sliderEl.addEventListener(
+        "mouseleave",
+        () => (heroTimer = setInterval(sliderNext, 6500)),
+      );
+
+      // ===== SECTORS carousel
+      let sectorIndex = 0;
+      const frames = () =>
+        Array.from(document.querySelectorAll(".carousel .frame"));
+      const sDots = () =>
+        Array.from(document.querySelectorAll("#sectorDots .dot"));
+      const caption = document.getElementById("sectorCaption");
+
+      const sectorData = [
+        {
+          title: "Agrindustria",
+          desc: "Herramientas robustas para producción continua y condiciones exigentes.",
+        },
+
+        {
+          title: "Energía",
+          desc: "Mecanizado de componentes de gran porte con estabilidad dimensional y rendimiento confiable en materiales exigentes.",
+        },
+
+        {
+          title: "Automotriz",
+          desc: "Precisión y repetibilidad para piezas críticas, con alta productividad.",
+        },
+
+        {
+          title: "Hidráulica",
+          desc: "Exactitud en alojamientos, estanqueidad y terminaciones superficiales críticas para garantizar eficiencia y cero fugas.",
+        },
+
+        {
+          title: "Medicina",
+          desc: "Micro-mecanizado de alta precisión y excelente acabado superficial para componentes críticos con tolerancias estrictas.",
+        },
+
+        {
+          title: "Moldes, Matrices y Dispositivos",
+          desc: "Alta precisión geométrica y calidad superficial en cavidades y superficies complejas, optimizando tiempos y vida útil del herramental.",
+        },
+      ];
+
+      function sectorGo(i) {
+        const f = frames(),
+          d = sDots();
+        sectorIndex = (i + sectorData.length) % sectorData.length;
+        f.forEach((el, idx) =>
+          el.classList.toggle("active", idx === sectorIndex),
+        );
+        d.forEach((el, idx) =>
+          el.classList.toggle("active", idx === sectorIndex),
+        );
+        document.getElementById("sectorTitle").textContent =
+          sectorData[sectorIndex].title;
+
+        document.getElementById("sectorDesc").textContent =
+          sectorData[sectorIndex].desc;
+      }
+      function sectorNext() {
+        sectorGo(sectorIndex + 1);
+      }
+      function sectorPrev() {
+        sectorGo(sectorIndex - 1);
+      }
+    </script>
+  </body>
+</html>
