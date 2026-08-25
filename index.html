@@ -7,9 +7,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
+    <link 
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
     />
     <a href="https://lordicon.com/">Icons by Lordicon.com</a>
 
@@ -162,10 +163,10 @@
         font-weight: 900;
         letter-spacing: 0.8px;
         text-transform: uppercase;
-        background-image: url("./primera parte/logo-encabezado1.png");
+        margin-left: -20px;
       }
       .brand-logo {
-        height: 42px; /* ajustá según tamaño deseado */
+        height: 30px; 
         width: auto;
         display: block;
       }
@@ -178,6 +179,7 @@
         display: flex;
         gap: 18px;
         align-items: center;
+        font-family:'Outfit', sans-serif;
         font-size: 13px;
         font-weight: 600;
         color: rgba(234, 242, 255, 0.82);
@@ -189,19 +191,19 @@
         opacity: 1;
       }
       .btn {
-        height: 40px;
-        padding: 0 14px;
+        height: 35px;
+        padding: 0 40px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.16);
+        border: none;
         background: rgba(10, 14, 26, 0.55);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         font-weight: 700;
         font-size: 13px;
-        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+        box-shadow: none;
         cursor: pointer;
         transition:
           transform 0.14s ease,
@@ -212,13 +214,11 @@
         border-color: rgba(255, 255, 255, 0.24);
       }
       .btn.primary {
-        border-color: rgba(22, 56, 244, 0.5);
-        background: linear-gradient(
-          135deg,
-          rgba(22, 56, 244, 0.95),
-          rgba(0, 163, 255, 0.78)
-        );
+        border-color: rgba(10, 19, 70, 0.5);
+        background: linear-gradient(90deg, #0052ff 0%, #002280 50%, #020836 100%);
         box-shadow: 0 18px 60px rgba(22, 56, 244, 0.26);
+        font-family: 'Century Gothic', sans-serif;
+        font-weight: 500;
       }
       .hamburger {
         display: none;
@@ -258,14 +258,17 @@
       }
 
       .h-sub {
-        font-size: clamp(20px, 2vw, 32px);
-        color: var(--blue);
+        font-size: clamp(25px, 2vw, 35px);
+        font-family: 'Outfit', sans-serif;
+        color: #0044FF;
         margin: 20px 0;
         max-width: 28ch;
+        font-weight:500;
       }
 
       .h-desc {
-        font-size: 15px;
+        font-size: 13px;
+        font-family: 'Outfit', sans-serif;
         line-height: 1.6;
         color: rgba(159, 176, 198, 0.92);
         max-width: 52ch;
@@ -286,17 +289,18 @@
 
       .slider-frame {
         border-radius: 20px;
-        background: rgba(255, 255, 255, 0.14);
-        padding: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        box-shadow: var(--shadow);
+        background: transparent;
+        padding: 0;
+        border: none;
+        box-shadow: none;
         position: relative;
       }
       .slider-card {
         position: relative;
         width: 100%;
         aspect-ratio: 16/10;
-        border-radius: 16px;
+        border-radius: 24px;
+        overflow: visible;
         background: #cfd6e5;
       }
 
@@ -309,6 +313,7 @@
         transition: opacity 0.4s ease;
         background-size: cover;
         background-position: center;
+        border-radius: 20px;
       }
 
       .slide.active {
@@ -333,9 +338,10 @@
         transform: translateY(-50%);
         width: 46px;
         height: 46px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        background: rgba(10, 16, 32, 0.55);
+        border-radius: 50% !important;
+        border: none !important;
+        outline: none !important;
+        background: linear-gradient(135deg, #02132d, #0066ff)!important;
         backdrop-filter: blur(10px);
         display: grid;
         place-items: center;
@@ -365,7 +371,7 @@
         bottom: 14px;
         left: 50%;
         transform: translateX(-50%);
-        display: flex;
+        display: none;
         gap: 8px;
       }
 
@@ -477,12 +483,12 @@
       .qh-timeline::before {
         content: "";
         position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 3px;
-        background: #1e5ac8;
+        top: 70px;
+        bottom: 50px;
+        left: calc(50% + 9px) !important;
+        transform: translateX(-50%) !important;
+        width: 2px;
+        background: #000000 !important;
       }
 
       /* ============================= */
@@ -506,12 +512,12 @@
       /* Punto */
       .qh-dot {
         position: absolute;
-        top: 28px;
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%, -50%);
         width: 18px;
         height: 18px;
-        background: #1e5ac8;
+        background: #0040FF !important;
         border-radius: 50%;
         z-index: 3;
         box-shadow: 0 0 0 8px rgba(30, 90, 200, 0.15);
@@ -524,7 +530,7 @@
       .qh-card {
         width: 460px;
         max-width: 90%;
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(14px);
         border-radius: 18px;
         padding: 28px 30px;
@@ -546,9 +552,10 @@
         gap: 14px;
         font-weight: 700;
         font-size: 18px;
-        color: #1e5ac8;
+        color: #0040FF;
         text-align: left;
         padding: 0;
+        font-family: 'Outfit', sans-serif;
       }
       .qh-card-header span {
         flex: 1;
@@ -557,11 +564,18 @@
         width: 22px;
         height: 22px;
         transition: transform 0.3s ease;
+        stroke: #6B7280 !important;
+        color: #6B7280 !important;
       }
 
       .qh-icon {
         width: 78px;
         height: 78px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 16px;
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    
       }
 
       .qh-card-body {
@@ -574,6 +588,7 @@
         font-size: 15px;
         line-height: 1.6;
         color: #111;
+        font-family: 'Outfit', sans-serif;
       }
 
       .qh-card.active .qh-card-body {
@@ -696,54 +711,77 @@
       .btn-solid:hover {
         background: #1747a2;
       }
-      .logoBox {
-        width: 132px;
-        height: 56px;
-        border-radius: 12px;
-        border: 1px solid rgba(10, 15, 21, 0.1);
-        background: #f6f8ff;
+      .brands-left {
         display: grid;
-        place-items: center;
-        font-weight: 900;
-        letter-spacing: 0.4px;
-        color: rgba(10, 15, 21, 0.7);
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        max-width: 450px;
+      }
+      .logoBox {
+        width: 200px;
+        height: 80px;
+        border-radius: 16px;
+        border: none;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;  
+        overflow: hidden;
+      }
+      .logoBox img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .brands-right{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 18px;
+        align-items: flex-start;
       }
       .brands-right h3 {
         margin: 0 0 6px 0;
-        color: var(--blue);
+        color: #0044ff;
+        font-family: 'Outfit', sans-serif;
         font-weight: 900;
-        font-size: clamp(22px, 2.2vw, 34px);
+        font-size: clamp(40px, 2.2vw, 60px);
         line-height: 1.05;
       }
       .brands-right p {
         margin: 0;
-        color: rgba(10, 15, 21, 0.7);
-        font-size: 13px;
+        color: #222222;
+        font-size: 15px;
         line-height: 1.6;
         max-width: 60ch;
       }
       .btn-outline {
         display: inline-block;
-        padding: 8px 16px;
-        border-radius: 20px;
-        border: 1px solid #1e5ac8;
-        color: #1e5ac8;
+        padding: 8px 22px;
+        border-radius: 22px;
+        border: 1.5px solid rgba(12, 76, 193, 0.3);
+        color: #0051ff;
+        background: linear-gradient(to right, #dbeafe, #ffffff);
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 550;
         text-decoration: none;
         margin-bottom: 10px;
+        font-family: 'Century Gothic', sans-serif;
       }
 
       .btn-solid {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 10px 35px;
         border-radius: 22px;
-        background: #1e5ac8;
-        color: #fff;
+        background: linear-gradient(to right, #0051ff, #020a1f);
+        color: #ffffff;
+        border: none;
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 500;
         text-decoration: none;
         transition: background 0.3s ease;
+        font-family: 'Century Gothic', sans-serif;
       }
 
       .btn-solid:hover {
@@ -755,48 +793,73 @@
         background: url("/4 parte/fondo 4.webp") center / cover no-repeat;
         padding: 120px 0;
       }
+      #contacto.dark {
+        background-image: url('8 parte/ws.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
       .split {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 22px;
+        gap: 40px;
         align-items: center;
       }
       .split h2 {
         font-family: "Inter", medium;
-        font-size: clamp(38px, 4vw, 56px);
+        font-size: clamp(40px, 4vw, 64px);
         font-weight: 900;
         color: #ffffff;
         line-height: 1.05;
-        margin-bottom: 16px;
+        margin-top: -20px;
+        margin-bottom: 25px;
       }
       .split p {
-        color: #3b82f6;
+        color: #0950c2;
         font-size: 18px;
         line-height: 1.8;
-        max-width: 50ch;
+        max-width: 47ch;
+        margin-bottom: 15px;
+        font-family: 'Outfit',sans-serif;
+        font-weight: 500;
+      }
+      #contacto.dark ol {
+        color: #ffffff !important;
+        font-weight: bold !important;
       }
 
       .photo {
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        box-shadow: var(--shadow);
-        height: 320px;
-        background: url("/4 parte/fabrica.jpg");
-        background-size: cover;
-        background-position: center;
+        border-radius: 8px;
+        height: 260px;
+        background-color: rgba(255, 255, 255, 0.06);
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        padding: 10px;
+        box-sizing: border-box;
+        overflow: hidden;
       }
+
+      .factory-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        display: block;
+      }
+      
 
       .btn-gradient {
         display: inline-block;
-        padding: 10px 22px;
-        border-radius: 22px;
-        font-size: 13px;
-        font-weight: 600;
+        padding: 8px 40px;
+        border-radius: 40px;
+        font-size: 14px;
+        font-weight: 500;
         color: #fff;
         text-decoration: none;
-        background: linear-gradient(135deg, #2563eb, #1e3a8a);
-        box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+        background: linear-gradient(90deg, #0052ff 0%, #002280 50%, #020836 100%);
+        font-family: 'Century Gothic', sans-serif;
         transition: all 0.3s ease;
+        margin-top: 30px;
       }
 
       .btn-gradient:hover {
@@ -815,23 +878,29 @@
         display: grid;
         grid-template-columns: 1.1fr 0.9fr;
         gap: 22px;
-        align-items: start;
+        align-items: center;
       }
       .other h2 {
-        font-family: "Inter" (medium);
-        margin: 0 0 10px 0;
-        font-weight: 900;
-        color: var(--blue);
-        font-size: clamp(26px, 2.6vw, 40px);
+        font-family: 'Inter';
+        margin: 0 0 40px 0;
+        font-weight: 700;
+        color: #0044ff;
+        font-size: 40px;
         line-height: 1.05;
+        padding-bottom: 45px;
+        border-bottom: 3.5px solid #0044ff;
+        display: inline-block;
+        width: 500px;
       }
       .other p {
         font-family: "Inter";
+        max-width: 55ch;
         margin: 0;
-        color: rgba(10, 15, 21, 0.72);
-        font-size: 18px;
+        color: #222222;
+        font-size: 15px;
         line-height: 1.7;
       }
+
       .logo-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -839,72 +908,102 @@
       }
       .tile1 {
         border-radius: 14px;
-        border: 1px solid rgba(10, 15, 21, 0.1);
-        background: url("/parte 5/POWERLINE.jpeg");
-        background-color: white;
-        background-size: 60%;
+        border: none;
+        background: url("parte 5/powerlinelogo.png");
+        background-color: transparent;
+        background-size: 95%;
         background-repeat: no-repeat;
         background-position: center;
+        background-blend-mode: multiply;
         min-height: 78px;
         color: rgba(10, 15, 21, 0.72);
       }
 
       .tile2 {
         border-radius: 14px;
-        border: 1px solid rgba(10, 15, 21, 0.1);
-        background: url("/parte 5/YG1.png");
-        background-color: white;
-        background-size: 40%;
+        border: none;
+        background: url("parte 5/yglogo.png.png");
+        background-color: transparent;
+        background-size: 50%;
         background-repeat: no-repeat;
         background-position: center;
+        background-blend-mode: multiply;
         min-height: 78px;
         color: rgba(10, 15, 21, 0.72);
       }
       .tile3 {
         border-radius: 14px;
-        border: 1px solid rgba(10, 15, 21, 0.1);
-        background: url("/parte 5/LENOX.png");
-        background-color: white;
-        background-size: contain;
+        border: none;
+        background: url("parte 5/lenoxlogo.png");
+        background-color: transparent;
+        background-size: 80%;
         background-repeat: no-repeat;
         background-position: center;
+        background-blend-mode: multiply;
         min-height: 78px;
         color: rgba(10, 15, 21, 0.72);
       }
       .tile4 {
         border-radius: 14px;
-        border: 1px solid rgba(10, 15, 21, 0.1);
-        background: url("/parte 5/KORLOY.jpeg");
-        background-color: white;
-        background-size: 60%;
+        border: none;
+        background: url("parte 5/somtalogo.png");
+        background-color: transparent;
+        background-size: 80%;
         background-repeat: no-repeat;
         background-position: center;
+        background-blend-mode: multiply;
         min-height: 78px;
         color: rgba(10, 15, 21, 0.72);
       }
       .tile5 {
         border-radius: 14px;
-        border: 1px solid rgba(10, 15, 21, 0.1);
-        background: url("/parte 5/VERTEX.jpeg");
-        background-color: white;
-        background-size: 80%;
+        border: none;
+        background: url("parte 5/korloylogo.png");
+        background-color: transparent;
+        background-size: 70%;
         background-repeat: no-repeat;
         background-position: center;
+        background-blend-mode: multiply;
         min-height: 78px;
         color: rgba(10, 15, 21, 0.72);
       }
       .tile6 {
         border-radius: 14px;
-        border: 1px solid rgba(10, 15, 21, 0.1);
-        background: url("/parte 5/SGS.png");
-        background-color: white;
-        background-size: 60%;
+        border: none;
+        background: url("parte 5/morse-logo-png.png");
+        background-color: transparent;
+        background-size: 50%;
         background-repeat: no-repeat;
         background-position: center;
+        background-blend-mode: multiply;
         min-height: 78px;
         color: rgba(10, 15, 21, 0.72);
       }
-
+      .tile7 {
+        border-radius: 14px;
+        border: none;
+        background: url("parte 5/vertexlogo.png");
+        background-color: transparent;
+        background-size: 90%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-blend-mode: multiply;
+        min-height: 78px;
+        color: rgba(10, 15, 21, 0.72);
+      }
+      .tile8 {
+        border-radius: 14px;
+        border: none;
+        background: url("parte 5/sgslogo.png");
+        background-color: transparent;
+        background-size: 40%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-blend-mode: multiply;
+        min-height: 78px;
+        color: rgba(10, 15, 21, 0.72);
+      }
+      
       .dark1 {
         position: relative;
         width: 100%;
@@ -915,32 +1014,37 @@
       .entrega {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 22px;
+        gap: 100px;
         align-items: center;
       }
       .entrega h2 {
         font-family: "Inter", medium;
         font-size: clamp(38px, 4vw, 56px);
         font-weight: 900;
-        color: #ffffff;
+        color: #0044FF;
         line-height: 1.05;
         margin-bottom: 16px;
       }
       .entrega p {
-        color: #3b82f6;
+        color: #FFFFFF;
         font-size: 18px;
         line-height: 1.8;
         max-width: 50ch;
       }
 
       .photo1 {
-        border-radius: 32px;
-        border: 4px solid white;
-        box-shadow: var(--shadow);
-        height: 320px;
-        background: url("/6 parte/box.jpg");
+        border-radius: 16px;
+        height: 350px;
+        background-color: transparent;
+        border: 10px solid rgba(200, 200, 200, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        box-sizing: border-box;
+        overflow: hidden;
+        background-image: url("/6 parte/box.jpg");
         background-size: cover;
         background-position: center;
+        background-clip: padding-box;
       }
 
       /* Sectores (claro + imagen derecha) */
@@ -990,10 +1094,10 @@
 
       .sectors h2 {
         font-family: "VLNL Breakz", sans-serif;
-        margin: 0 0 10px 0;
+        margin: -80px 0 10px 0;
         font-weight: 900;
         color: var(--blue);
-        font-size: 36px;
+        font-size: 50px;
       }
 
       .sectors p {
@@ -1017,14 +1121,17 @@
         overflow: hidden;
       }
 
+
+
       .blue-line {
-        width: 220px;
+        width: 350px;
         height: 3px;
         background: var(--blue);
-        margin-bottom: 40px;
+        margin-top: 20px;
+        margin-bottom: 50px;
       }
       .frame {
-        border-radius: 50px; /* más elegante */
+        border-radius: 50px;
         position: absolute;
         inset: 0;
         opacity: 0;
@@ -1135,6 +1242,7 @@
       .chat svg {
         opacity: 0.9;
       }
+    
 
       /* responsive */
       @media (max-width: 920px) {
@@ -1175,6 +1283,53 @@
         .hamburger {
           display: inline-flex;
         }
+
+        #sectorDots {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          margin-top: 40px;
+          width: 100%;
+          position: relative;
+          grid-column: 1 / -1;
+        }
+
+        #sectorDots .dot {
+          width: 8px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #cbd5e1;
+          border: #cbd5e1;
+          cursor: pointer;
+          padding: 0;
+          transition: all 0.6s ease;
+        }
+
+        #sectorDots .dot.active {
+          background-color: #2563eb;
+          width: 12px;
+          height: 12px;
+        }
+      }
+      #sectorDots {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       gap: 10px;
+       margin-top: 40px;
+       width: 100%;
+       grid-column: 1 / -1;
+      }
+      #sectorDots .dot{
+        width: 8px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #cbd5e1;
+        border: #cbd5e1;
+        cursor: pointer;
+        padding: 0;
+        transition: all 0,6s ease;
       }
     </style>
   </head>
@@ -1187,7 +1342,7 @@
         <div class="container nav-inner">
           <a class="brand" href="#top">
             <img
-              src="./primera parte/logo-encabezado1.png"
+              src="./primera parte/solvexlogook.png.png"
               class="brand-logo"
             />
           </a>
@@ -1263,8 +1418,7 @@
           </p>
 
           <div class="hero-ctas">
-            <a class="btn primary" href="#contacto">Coordinar</a>
-            <a class="btn" href="#que-hacemos">Conocé más</a>
+            <a class="btn primary" href="#contacto">Contacto</a>
           </div>
         </div>
 
@@ -1330,7 +1484,7 @@
             <div class="qh-dot"></div>
             <div class="qh-card">
               <button type="button" class="qh-card-header">
-                <img src="icon/icon1.svg" class="qh-icon" alt="" />
+                <img src="icon/gemini-svg.svg" class="qh-icon" alt="" />
                 <span>Asistencia técnica personalizada</span>
 
                 <svg
@@ -1356,7 +1510,7 @@
             <div class="qh-dot"></div>
             <div class="qh-card">
               <button type="button" class="qh-card-header">
-                <img src="icon/icon2.svg" class="qh-icon" alt="" />
+                <img src="icon/gemini-svg (1).svg" class="qh-icon" alt="" />
                 <span>Especialistas en herramientas de corte</span>
                 <svg
                   class="qh-arrow"
@@ -1381,7 +1535,7 @@
             <div class="qh-dot"></div>
             <div class="qh-card">
               <button type="button" class="qh-card-header">
-                <img src="icon/icon3.svg" class="qh-icon" alt="" />
+                <img src="icon/gemini-svg (2).svg" class="qh-icon" alt="" />
                 <span>La mejor relación precio – calidad</span>
                 <svg
                   class="qh-arrow"
@@ -1427,17 +1581,17 @@
     <div class="brands" id="productos">
       <div class="container brands-inner">
         <div class="brands-left" aria-label="Logos (placeholders)">
-          <div class="logoBox">GUHRING</div>
-          <div class="logoBox">ASIMETO</div>
-          <div class="logoBox">KYOCERA</div>
-          <div class="logoBox">UNION</div>
+          <div class="logoBox" style="background-color: #ffd700;"><img src="images/logo-guhring.png" alt="GUHRING"></div>
+          <div class="logoBox" style="background-color: #ffd700;"><img src="images/logo-asimeto.png" alt="ASIMETO"></div>
+          <div class="logoBox" style="background-color: #ffffff;"><img src="images/logo-kyocera.png" alt="KYOCERA"></div>
+          <div class="logoBox" style="background-color: #ffffff;"><img src="images/logo-union.png" alt="UNION"></div>
         </div>
         <div class="brands-right">
           <a href="#" class="btn-outline">Nuestras marcas</a>
           <h3>Todas las alternativas<br />para el mecanizado</h3>
           <p>
-            Marcas seleccionadas para garantizar rendimiento, confiabilidad y
-            excelente relación precio–calidad.
+            Trabajamos con marcas que garantizan
+            rendimiento, confiabilidad y excelente relación precio-calidad.
           </p>
           <a href="#contacto" class="btn-solid"> Solicitar información </a>
         </div>
@@ -1449,13 +1603,16 @@
         <div>
           <h2>¿Quiénes<br />somos?</h2>
           <p>
-            En Solvex trabajamos para que nuestros clientes cuenten con
-            herramientas productivas, de calidad y con la asistencia técnica
-            adecuada, pagando un precio justo.
+            En Solvex trabajamos para que nuestros clientes cuenten 
+            con herramientas productivas, de calidad y con la 
+            asistencia técnica adecuada, pagando un precio justo.
+            Queremos ser el proveedor confiable al que las empresas
+            delegan los insumos clave para su producción diaria.
           </p>
           <a class="btn-gradient" href="#contacto">Contacto</a>
         </div>
-        <div class="photo" role="img" aria-label="Industria"></div>
+        <div class="photo">
+          <img src="/4 parte/fabrica.jpg" alt="Industria" class="factory-img">
       </div>
     </section>
 
@@ -1465,8 +1622,8 @@
           <h2>Otras marcas que distribuimos</h2>
           <p>
             Nuestra red de partners en herramientas de corte y utillaje nos
-            permite ofrecer cobertura integral, con eficiencia y precisión de
-            punta a punta.
+            permite ofrecer una cobertura integral para proyectos de mecanizado, con
+            eficiencia y precisión de punta a punta.
           </p>
         </div>
         <div class="logo-grid">
@@ -1476,6 +1633,8 @@
           <div class="tile4"></div>
           <div class="tile5"></div>
           <div class="tile6"></div>
+          <div class="tile7"></div>
+          <div class="tile8"></div>
         </div>
       </div>
     </section>
@@ -1483,12 +1642,12 @@
     <section class="dark1">
       <div class="container entrega">
         <div>
+          <img src="6 parte/solvexlogook.png.png" alt="Logo Solvex" class="logo-entrega" style="width: 220px;">
           <h2>Rápida entrega<br />en todo el país</h2>
           <p>
-            Hacemos envíos coordinados según necesidad del cliente y con
-            comunicación directa.
+            Hacemos envíos coordinados según necesidad del cliente
           </p>
-          <a class="btn primary" href="#contacto">Coordinar envío</a>
+          <a class="btn primary" href="#contacto">Solicitar información</a>
         </div>
         <div class="photo1"></div>
       </div>
@@ -1524,43 +1683,17 @@
               <div class="frame f5"></div>
               <div class="frame f6"></div>
             </div>
-
-            <button
-              class="arrow prev"
-              type="button"
-              aria-label="Anterior"
-              onclick="sectorPrev()"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M14.5 5L7.5 12L14.5 19"
-                  stroke="white"
-                  stroke-width="2.2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-
-            <button
-              class="arrow next"
-              type="button"
-              aria-label="Siguiente"
-              onclick="sectorNext()"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M9.5 5L16.5 12L9.5 19"
-                  stroke="white"
-                  stroke-width="2.2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
       </div>
+        <div id="sectorDots">
+          <button class="dot" onclick="currentSector(0)"></button>
+          <button class="dot" onclick="currentSector(1)"></button>
+          <button class="dot" onclick="currentSector(2)"></button>
+          <button class="dot" onclick="currentSector(3)"></button>
+          <button class="dot" onclick="currentSector(4)"></button>
+          <button class="dot" onclick="currentSector(5)"></button>
+      </div>
+    </div>
+    </div>
     </section>
 
     <section class="dark" id="contacto">
@@ -1571,7 +1704,7 @@
         <div>
           <ol
             style="
-              margin: 0;
+              margin: -30px 0 0 0;
               padding-left: 18px;
               color: rgba(234, 242, 255, 0.88);
               line-height: 1.95;
@@ -1734,7 +1867,7 @@
         f.forEach((el, idx) =>
           el.classList.toggle("active", idx === sectorIndex),
         );
-        d.forEach((el, idx) =>
+        sDots().forEach((el, idx) =>
           el.classList.toggle("active", idx === sectorIndex),
         );
         document.getElementById("sectorTitle").textContent =
@@ -1748,6 +1881,12 @@
       }
       function sectorPrev() {
         sectorGo(sectorIndex - 1);
+      }
+      setInterval(() => {
+        sectorNext();
+      }, 6000);
+      function currentSector(index) {
+        sectorGo(index);
       }
     </script>
   </body>
