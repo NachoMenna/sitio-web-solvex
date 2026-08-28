@@ -192,7 +192,7 @@
       }
       .btn {
         height: 35px;
-        padding: 0 40px;
+        padding: 0 45px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -708,9 +708,6 @@
         transition: background 0.3s ease;
       }
 
-      .btn-solid:hover {
-        background: #1747a2;
-      }
       .brands-left {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -733,6 +730,12 @@
         height: 100%;
         object-fit: cover;
         display: block;
+      }
+      .logoBox.logo-oke img {
+        object-fit: contain !important;
+        padding: 0px;
+        width: 120px !important;
+        height: auto !important;
       }
       .brands-right{
         display: flex;
@@ -780,13 +783,19 @@
         font-size: 13px;
         font-weight: 500;
         text-decoration: none;
-        transition: background 0.3s ease;
         font-family: 'Century Gothic', sans-serif;
       }
 
-      .btn-solid:hover {
-        background: #1747a2;
+      .btn-outline:hover {
+        transform: translateY(-2px); /* Opcional: hace que se eleve un poquito */
+        transition: all 0.3s ease; 
       }
+      .btn-solid:hover {
+        transform: translateY(-2px) !important;
+        transition: all 0.3s ease !important;
+      }
+      
+      
       /* Dark blocks: “Quiénes somos”, “Entrega”, “Cómo comprar” */
       .dark {
         position: relative;
@@ -803,7 +812,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 40px;
-        align-items: center;
+        align-items: center; 
       }
       .split h2 {
         font-family: "Inter", medium;
@@ -814,6 +823,58 @@
         margin-top: -20px;
         margin-bottom: 25px;
       }
+      #contacto .split h2 {
+        font-family: "VLNL Breakz", sans-serif;
+        font-size: clamp (28px, 3vw, 44px);
+        font-weight: 700;
+        color:#1d63ed;
+        line-height: 1.1;
+        text-transform: lowercase;
+        text-align: left;
+        margin-top: 0;
+        margin-bottom: 25px;
+        position: relative;
+        display: inline-block;
+      }
+      .icono-dolar-personalizado {
+        position: absolute;
+        top: 10px;
+        right: 145px;
+        width: 77px;
+        height: 80px;
+        background: radial-gradient(circle at center, #1440a3 0%, #082670 65%, #031342 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        z-index: 1;
+      }
+      .icono-dolar-personalizado::before {
+        content: '';
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        width: 47px;
+        height: 47px;
+        background: rgba(20, 64, 163, 0.65);
+        border-radius: 50%;
+        z-index: -1;
+        filter: blur(1.5px);
+      }
+      .icono-dolar-personalizado span {
+        color: #e6f0ff;
+        font-size: 55px;
+        font-weight: 700;
+        top: -3.5px;
+        font-family: 'Segoe UI', Calibri, sans-serif !important;
+        stroke-linejoin: round;
+        position: relative;
+        background: linear-gradient(to bottom, #ffffff 0%, #b3d1ff 50%, #1d63ed 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      } 
       .split p {
         color: #0950c2;
         font-size: 18px;
@@ -847,14 +908,13 @@
         display: block;
       }
       
-
       .btn-gradient {
         display: inline-block;
-        padding: 8px 40px;
+        padding: 8px 50px;
         border-radius: 40px;
         font-size: 14px;
         font-weight: 500;
-        color: #fff;
+        color: #ffffff;
         text-decoration: none;
         background: linear-gradient(90deg, #0052ff 0%, #002280 50%, #020836 100%);
         font-family: 'Century Gothic', sans-serif;
@@ -866,6 +926,7 @@
         transform: translateY(-2px);
         box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
       }
+
 
       /* “Otras marcas” con grilla a la derecha */
       .other {
@@ -958,9 +1019,9 @@
       .tile5 {
         border-radius: 14px;
         border: none;
-        background: url("parte 5/korloylogo.png");
+        background: url("images/Logounion.png");
         background-color: transparent;
-        background-size: 70%;
+        background-size: 80%;
         background-repeat: no-repeat;
         background-position: center;
         background-blend-mode: multiply;
@@ -1115,6 +1176,7 @@
         box-shadow: 0 18px 45px rgba(10, 15, 21, 0.12);
         background: #dfe8ff;
         padding: 8px;
+      
       }
       .carousel-inner {
         border-radius: 28px;
@@ -1199,9 +1261,9 @@
 
       /* footer */
       footer {
-        padding: 28px 0;
-        background: #05070d;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 90px 0;
+        background: #000000;
+        border-top: none;
         color: rgba(159, 176, 198, 0.92);
         font-size: 13px;
       }
@@ -1256,10 +1318,22 @@
         .brands {
           background-position: left center;
         }
-
         .brands-inner {
-          grid-template-columns: 1fr;
+          grid-template-columns: 1fr !important;
           gap: 40px;
+          display: grid;
+          justify-items: center !important;
+          width: auto !important;
+        }
+        .brands-left {
+          justify-content: center !important;
+          align-items: center !important;
+          width: 100% !important;
+        }
+        .brands-right {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
         .brands-right {
           text-align: center;
@@ -1271,11 +1345,103 @@
         .split {
           grid-template-columns: 1fr;
         }
+        .container.split {
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .split.photo {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+        .split.photo.img {
+          width: 100% !important;
+          height: auto !important;
+          object-fit: cover;
+        }
         .other-grid {
           grid-template-columns: 1fr;
+          justify-items: center;
+          text-align: center;
+        }
+        .logo-grid {
+          display: grid !important;
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 20px !important;
+          width: 100% !important;
+          justify-content: center !important;
+          margin-left: 40px !important;
         }
         .sectors-grid {
           grid-template-columns: 1fr;
+        }
+        .container-entrega .photo1 {
+          width: 100% !important;
+          height: auto !important;
+        }
+        .container-entrega .photo1 img {
+          width: 100% !important;
+          height: auto !important;
+          display: block;
+          object-fit: cover;
+          max-width: 100% !important;
+        }
+        #sectores, .sectors {
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .carousel {
+          margin-top: 30px !important;
+          width: 100% !important;
+        }
+        .sectors-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .sectors-content hr {
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+        #contacto ol {
+          text-align: left;
+          display: inline-block;
+          margin: 0 auto 20px auto;
+          padding-left: 0;
+        }
+        #contacto .container.split div:has(a.btn.primary) {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          width: 100% !important;
+          margin-top: 25px !important;
+        }
+        #contacto a.btn.primary {
+          margin: 0 auto !important;
+        }
+        footer {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          text-align: center !important;
+          gap: 25px !important;;
+        }
+        footer .container {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          text-align: center !important;
+          width: 100% !important;
+          margin: 0 !important;
+        }
+        footer .brand img {
+          margin-left: auto !important;
+          margin-right: auto !important;
+          display: block !important;
         }
         .nav-links {
           display: none;
@@ -1283,13 +1449,24 @@
         .hamburger {
           display: inline-flex;
         }
-
+        
+        .icono-dolar-personalizado {
+          position: relative !important;
+          top: 15px !important;
+          right: auto !important;
+          display: inline-flex !important;
+          vertical-align: middle !important;
+          width: 70px !important;
+          height: 70px !important;
+          margin-left: 20px !important;
+          transform: translateY(-5px);
+        }
+    
         #sectorDots {
           display: flex;
           justify-content: center;
           align-items: center;
           gap: 10px;
-          margin-top: 40px;
           width: 100%;
           position: relative;
           grid-column: 1 / -1;
@@ -1311,24 +1488,26 @@
           width: 12px;
           height: 12px;
         }
+
       }
       #sectorDots {
        display: flex;
        justify-content: center;
        align-items: center;
        gap: 10px;
-       margin-top: 40px;
+       margin-top: 5px;
        width: 100%;
        grid-column: 1 / -1;
       }
-      #sectorDots .dot{
+      #sectorDots .dot {
         width: 8px;
         height: 10px;
         border-radius: 50%;
         background-color: #cbd5e1;
         border: #cbd5e1;
         cursor: pointer;
-        padding: 0;
+        padding: 4px;
+        margin-top: 60px;
         transition: all 0,6s ease;
       }
     </style>
@@ -1581,10 +1760,10 @@
     <div class="brands" id="productos">
       <div class="container brands-inner">
         <div class="brands-left" aria-label="Logos (placeholders)">
-          <div class="logoBox" style="background-color: #ffd700;"><img src="images/logo-guhring.png" alt="GUHRING"></div>
-          <div class="logoBox" style="background-color: #ffd700;"><img src="images/logo-asimeto.png" alt="ASIMETO"></div>
-          <div class="logoBox" style="background-color: #ffffff;"><img src="images/logo-kyocera.png" alt="KYOCERA"></div>
-          <div class="logoBox" style="background-color: #ffffff;"><img src="images/logo-union.png" alt="UNION"></div>
+          <div class="logoBox logo-oke" style="background-color: #ffffff;"><img src="images/Okelogo.png" alt="GUHRING"></div>
+          <div class="logoBox" style="background-color: #ffd700;"><img src="images/logo-guhring.png" alt="ASIMETO"></div>
+          <div class="logoBox" style="background-color: #ffffff;"><img src="images/logo-asimeto.png" alt="KYOCERA"></div>
+          <div class="logoBox" style="background-color: #ffffff;"><img src="images/logo-kyocera.png" alt="UNION"></div>
         </div>
         <div class="brands-right">
           <a href="#" class="btn-outline">Nuestras marcas</a>
@@ -1609,7 +1788,7 @@
             Queremos ser el proveedor confiable al que las empresas
             delegan los insumos clave para su producción diaria.
           </p>
-          <a class="btn-gradient" href="#contacto">Contacto</a>
+          <a class="btn-gradient" href="#contacto"style="box-shadow: none !important; transition: transform 0.3s ease !important;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">Contacto</a>
         </div>
         <div class="photo">
           <img src="/4 parte/fabrica.jpg" alt="Industria" class="factory-img">
@@ -1699,7 +1878,13 @@
     <section class="dark" id="contacto">
       <div class="container split">
         <div>
-          <h2>¿Cómo comprar<br />en Solvex?</h2>
+
+          <h2 style="position: relative;">
+            ¿Cómo comprar<br />en Solvex?
+            <div class="icono-dolar-personalizado" style="margin-bottom: 20px;">
+                <span>$</span>
+            </div>
+          </h2>
         </div>
         <div>
           <ol
@@ -1709,6 +1894,7 @@
               color: rgba(234, 242, 255, 0.88);
               line-height: 1.95;
               font-weight: 700;
+              font-size: 20px;
             "
           >
             <li>Escribinos por WhatsApp.</li>
@@ -1723,36 +1909,43 @@
               href="https://wa.me/5493564630525"
               target="_blank"
               rel="noreferrer"
-              >WhatsApp</a
-            >
-            <a class="btn" href="mailto:ignaciomenna@solvex.com.ar">Email</a>
-          </div>
-          <div
-            style="
-              margin-top: 10px;
-              color: rgba(159, 176, 198, 0.92);
-              font-size: 12.5px;
-              line-height: 1.6;
-            "
+              style="padding: 10px 60px !important; display: inline-block !important;"
+              >Contacto</a
+
           ></div>
         </div>
       </div>
     </section>
 
     <footer>
-      <div class="container footer-inner">
+      <div class="container footer-inner" style="display: flex; align-items: center; flex-wrap: wrap; width: 100%; gap: 60px;">
         <div class="brand">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span style="font-weight: 900; color: rgba(234, 242, 255, 0.92)"
-            >SOLVEX</span
-          >
+            <img src="primera parte/solvexlogook.png.png" alt="Solvex Logo" style="height: 35px; width: auto; display: block; margin-left: 80px;">
         </div>
 
-        <div style="display: flex; gap: 10px; flex-wrap: wrap">
-          <span class="chip">📍 Córdoba, AR</span>
-          <span class="chip">📞 +54 9 3564 630525</span>
-          <span class="chip">✉️ ignaciomenna@solvex.com.ar</span>
+        <div style="display: flex; align-items: flex-start; margin-right: 100px;">
+
+            <div style="display: flex; align-items: flex-start; gap: 15px; margin-left: 50px; color: rgba(159, 176, 198, 0.92);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke= #ffffff stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div style="display: flex; flex-direction: column;">
+                <span>Dr. Gregorio Álvarez 4581</span>
+                <span style="display: block; margin-top: 2px;">Córdoba, AR</span>
+            </div>
+
+            <div style="display: flex; align-items: flex-start; gap: 15px; margin-left: 50px; color: rgba(159, 176, 198, 0.92);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke= #ffffff stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <div style="display: flex; flex-direction: column;">
+                <span>ignaciomenna@solvex.com.ar</span>
+                <span style="display: block; margin-top: 2px;">administracion@solvex.com.ar</span>
+            </div>
+
+            <div style="display: flex; align-items: flex-start; gap: 15px; margin-left: 50px; color: rgba(159, 176, 198, 0.92);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke= #ffffff stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <div style="display: flex; flex-direction: column;">
+                <span>+54 9 3564630525</span>
+            </div>
         </div>
+
       </div>
     </footer>
 
