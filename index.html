@@ -13,7 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
     />
     <a href="https://lordicon.com/">Icons by Lordicon.com</a>
-
+    
     <style>
       :root {
         --ink: #0b1020; /* negro azulado */
@@ -32,7 +32,10 @@
         --shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
         --max: 1120px;
       }
-
+      html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
       @font-face {
         font-family: "Inter";
         src: url("./fonts/inter/Inter-Thin.ttf") format("truetype");
@@ -1307,10 +1310,18 @@
     
 
       /* responsive */
-      @media (max-width: 920px) {
+      @media (max-width: 576px) {
         .hero-grid {
           grid-template-columns: 1fr;
           padding-top: 95px;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .hero-grid img,
+        .hero-grid video {
+
+          max-width: 100%;
+          height: auto;
         }
         .what-grid {
           grid-template-columns: 1fr;
