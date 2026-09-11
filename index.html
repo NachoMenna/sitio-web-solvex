@@ -1309,7 +1309,7 @@
     
 
       /* responsive */
-      @media (max-width: 390px) {
+      @media (max-width: 576px) {
         .hero-grid {
           grid-template-columns: 1fr;
           padding-top: 95px;
@@ -1324,16 +1324,6 @@
         }
         .what-grid {
           grid-template-columns: 1fr;
-        }
-        header .nav .brand img,
-        nav .brand img, 
-        .hero .brand img {
-          max-height: 200px !important;
-          width: auto !important;
-          object-fit: contain !important;
-        }
-        .h-sub {
-          color: #196ef5;
         }
         .brands {
           background-position: left center;
@@ -1354,40 +1344,13 @@
           display: flex;
           flex-direction: column;
           align-items: center;
+        }
+        .brands-right {
           text-align: center;
         }
         .brands-right p {
           margin-left: auto;
           margin-right: auto;
-        }
-        .logoBox {
-          width: 130px !important;
-          height: 65px !important;
-          margin: 8px auto !important;
-          overflow: hidden !important;
-          display: flex;
-          align-items: center !important;
-          justify-content: center !important;
-        }
-        .logoBox.logo-oke img,
-        .logoBox img[src*="kyocera"] {
-          max-width: 125% !important;
-          max-height: 125% !important;
-          object-fit: contain !important;
-          border: none;
-          box-shadow: none;
-          padding: 0;
-          margin: 0;
-          width: 100%;
-          height: 100%;
-        }
-        .logoBox img[src*="kyocera"] {
-          transform: scale(1.20) !important; /* Agranda un pelito la imagen para que el borde quede fuera de la caja */
-          object-fit: cover !important;
-          object-position: center;
-          transform: none;
-          padding: 10px;
-          clip-path: inset(25% 0% 25% 0%) !important;
         }
         .split {
           grid-template-columns: 1fr;
@@ -1423,51 +1386,6 @@
         .sectors-grid {
           grid-template-columns: 1fr;
         }
-        .other h2 {
-          width: 100% !important;
-          max-width: 100% !important;
-          display: block !important;
-          font-size: 32px !important; /* Ajustá si querés que baje un poco más el tamaño */
-          text-align: center !important;
-          position: relative !important;
-          left: -25px !important;
-        }
-
-        .other, .container.other-grid {
-          width: 100% !important;
-          padding: 0 15px !important;
-          box-sizing: border-box !important;
-          text-align: center !important;
-        }
-        
-        .other p {
-          text-align: center !important;
-          width: 100% !important;
-          position: relative !important;
-          left: -25px !important;
-        }
-        .other {
-          padding-top: 40px !important;
-        }
-        .logo-grid {
-          transform: translateX(-30px) !important;
-        }
-        .logo-grid .logoBox,
-        .logo-grid > div {
-          display: flex !important;
-          width: 150px !important;
-          height: 75px !important;
-          margin: 8px auto !important;
-          background-color: none !important;
-          justify-content: center !important;
-          align-items: center !important;
-        }
-
-        .logo-grid img {
-          max-width: 90% !important;
-          max-height: 90% !important;
-          object-fit: contain !important;
-        }
         .container-entrega .photo1 {
           width: 100% !important;
           height: auto !important;
@@ -1488,18 +1406,12 @@
         .carousel {
           margin-top: 30px !important;
           width: 100% !important;
-          transform: translateX(-30px) !important;
         }
         .sectors-content {
           display: flex;
           flex-direction: column;
           align-items: center;
           text-align: center;
-          transform: translateX(-30px) !important;
-        }
-        .dot {
-          transform: translateX(-30px) !important;
-          margin-bottom: -60px;
         }
         .sectors-content hr {
           margin-left: auto !important;
@@ -1559,7 +1471,7 @@
           margin-right: 0 !important;
         }
         footer div.brand img {
-          margin-left: 50px !important;
+          margin-left: 135px !important;
           margin-right: auto !important;
           display: block !important;
         }
@@ -1568,37 +1480,8 @@
         }
         .hamburger {
           display: inline-flex;
-          background: linear-gradient(90deg, #0052ff 0%, #002280 50%, #020836 100%);
-          border: none;
-          color: #ffffff;
         }
-        .nav-inner,
-        .container.nav-inner {
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 15px !important;
-        }
-        .brand {
-          order: -1 !important;
-          display: flex !important;
-          justify-content: center !important;
-          width: 100% !important;
-          margin-bottom: 5px !important;
-        }
-        .brand-logo {
-          height: 25px !important;
-          width: auto !important;
-          max-width: none;
-        }
-        .nav-inner .hamburger {
-          transform: scale(0.72) !important;
-          transform-origin: center !important;
-        }
-        .nav-inner a [href*="contacto"],
-        .nav-inner .btn {
-          padding: 6px 35px !important;
-          font-size: 13px !important;
-        }
+        
         .icono-dolar-personalizado {
           position: relative !important;
           top: 15px !important;
