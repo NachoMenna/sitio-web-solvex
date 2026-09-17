@@ -262,7 +262,7 @@
       .h-sub {
         font-size: clamp(25px, 2vw, 35px);
         font-family: 'Outfit', sans-serif;
-        color: #0044FF;
+        color: #0559e0;
         margin: 20px 0;
         max-width: 28ch;
         font-weight:500;
@@ -404,6 +404,14 @@
         .h-desc {
           margin-left: auto;
           margin-right: auto;
+        }
+        .h-sub{
+          text-shadow: 
+            -1px -1px 0 #000,
+             1px -1px 0 #000,
+            -1px  1px  0 #000,
+             1px  1px  0 #000,
+             0 2px 4px rgba(0, 0, 0, 0.8) !important;
         }
 
         .hero-ctas {
@@ -1309,7 +1317,7 @@
     
 
       /* responsive */
-      @media (max-width: 576px) {
+      @media (min-width: 360px) and (max-width: 1100px) {
         .hero-grid {
           grid-template-columns: 1fr;
           padding-top: 95px;
@@ -1336,6 +1344,9 @@
           width: auto !important;
         }
         .brands-left {
+          display: flex !important;
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 15px !important;
           justify-content: center !important;
           align-items: center !important;
           width: 100% !important;
@@ -1370,21 +1381,29 @@
           height: auto !important;
           object-fit: cover;
         }
+        .other h2 {
+          width: 100% !important;
+          max-width: 100% !important;
+          font-size: 28px !important;
+          line-height: 1.2 !important;
+          text-align: center !important;
+          margin: 0 auto 20px auto !important;
+        }
+
         .other-grid {
           grid-template-columns: 1fr;
           justify-items: center;
           text-align: center;
+          width: 100% !important;
         }
+
         .logo-grid {
           display: grid !important;
           grid-template-columns: repeat(2, 1fr) !important;
           gap: 20px !important;
           width: 100% !important;
           justify-content: center !important;
-          margin-left: 40px !important;
-        }
-        .sectors-grid {
-          grid-template-columns: 1fr;
+          margin-left: 20px !important; /* Quitamos el margen lateral que lo desentraba */
         }
         .container-entrega .photo1 {
           width: 100% !important;
@@ -1403,9 +1422,25 @@
           flex-direction: column;
           align-items: center;
         }
-        .carousel {
-          margin-top: 30px !important;
+        .sectors-grid {
+          display: grid !important;
+          grid-template-columns: 1fr !important;
+          justify-items: center !important;
           width: 100% !important;
+          margin-left: -30px !important;
+        }
+        .carousel {
+          margin-top: 20px !important;
+          width: 100% !important;
+          max-width: 320px !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          box-sizing: border-box !important;
+          display: flex !important;
+          justify-content: center !important;
+        }
+        .carousel {
+          max-width: 275px !important;
         }
         .sectors-content {
           display: flex;
@@ -1471,7 +1506,7 @@
           margin-right: 0 !important;
         }
         footer div.brand img {
-          margin-left: 135px !important;
+          margin-left: auto !important;
           margin-right: auto !important;
           display: block !important;
         }
@@ -1480,6 +1515,16 @@
         }
         .hamburger {
           display: inline-flex;
+        }
+        .btn.hamburger {
+          background: linear-gradient(135deg, #0051ff 0%, #002699 100%) !important; /* Ajustá los colores del gradiente si el tuyo usa otros tonos específicos */
+          border: none !important;
+          color: #fff !important;
+          padding: 10px 15px !important;
+          border-radius: 8px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
         }
         
         .icono-dolar-personalizado {
@@ -1529,13 +1574,10 @@
           display: block;
         }
         #sectorDots {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 10px;
-          width: 100%;
-          position: relative;
-          grid-column: 1 / -1;
+          display: flex !important;
+          justify-content: center !important;
+          align-items: center !important;
+          width: 100% !important;
         }
 
         #sectorDots .dot {
@@ -1554,7 +1596,7 @@
           width: 12px;
           height: 12px;
         }
-
+      
       }
       #sectorDots {
        display: flex;
